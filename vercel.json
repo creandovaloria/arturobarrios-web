@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/propuesta-andreav",
+      "destination": "https://propuesta-andy-villaruel.vercel.app/"
+    },
+    {
+      "source": "/propuesta-andreav/:path*",
+      "destination": "https://propuesta-andy-villaruel.vercel.app/:path*"
+    }
+  ]
+}
