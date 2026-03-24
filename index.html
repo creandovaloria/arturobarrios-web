@@ -868,6 +868,8 @@ footer {
 @media (max-width: 1024px) {
   .hero { grid-template-columns: 1fr; min-height: auto; }
   .hero-right { display: none; }
+  .hero-wrap { flex-direction: column !important; min-height: auto !important; }
+  .hero-photo-col { display: none !important; }
   .about { grid-template-columns: 1fr; gap: 48px; }
   .cta-section { grid-template-columns: 1fr; gap: 40px; }
 }
@@ -905,7 +907,7 @@ footer {
 </nav>
 
 <!-- ═══ HERO ═══ -->
-<section style="
+<section class="hero-wrap" style="
   min-height: 100vh;
   padding-top: 68px;
   display: flex;
@@ -976,7 +978,7 @@ footer {
   </div>
 
   <!-- COLUMNA DERECHA: Foto -->
-  <div style="
+  <div class="hero-photo-col" style="
     width: 420px;
     flex-shrink: 0;
     background: var(--blue);
