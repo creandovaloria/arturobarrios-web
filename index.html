@@ -140,6 +140,10 @@ footer { background:var(--ink); padding:28px 6%; display:flex; align-items:cente
   .pilares-grid,.stats-grid,.emp-grid { grid-template-columns:1fr; }
 }
 @media(max-width:768px){
+  .hero-inner { grid-template-columns:1fr !important; text-align:center !important; }
+  .hero-inner h1, .hero-inner .hero-eyebrow { text-align:center !important; }
+  .hero-frases { justify-content:center !important; }
+  .hero-btns { justify-content:center !important; }
   nav { padding:0 5%; }
   .nav-links { display:none; }
   .hamburger { display:flex; }
@@ -173,21 +177,25 @@ footer { background:var(--ink); padding:28px 6%; display:flex; align-items:cente
 
 <!-- HERO — imagen 1 -->
 <section class="hero" id="home">
-  <div class="hero-inner reveal">
-    <div style="display:inline-block;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:10px;padding:14px 28px;margin-bottom:32px;">
-      <p style="font-family:'Montserrat',sans-serif;font-size:clamp(0.85rem,1.5vw,1rem);font-weight:700;color:#fff;line-height:1.4;margin-bottom:4px;">Tu negocio ya funciona. Nosotros lo hacemos crecer — con lo que ya tienes.</p>
-      <p style="font-size:0.78rem;color:rgba(255,255,255,0.5);">Sin complicaciones</p>
+  <div class="hero-inner reveal" style="max-width:1000px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;text-align:left;">
+    <!-- Izquierda: mensaje -->
+    <div style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:14px;padding:32px;display:flex;flex-direction:column;justify-content:center;text-align:center;">
+      <p style="font-family:'Montserrat',sans-serif;font-size:clamp(1rem,1.8vw,1.2rem);font-weight:700;color:#fff;line-height:1.5;margin-bottom:10px;">Tu negocio ya funciona. Nosotros lo hacemos crecer — con lo que ya tienes.</p>
+      <p style="font-size:0.82rem;color:rgba(255,255,255,0.45);">Sin complicaciones</p>
     </div>
-    <span class="hero-eyebrow">Arturo Barrios</span>
-    <h1 class="hero-title">Asesor de Crecimiento Estratégico</h1>
-    <div class="hero-frases">
-      <span class="hero-frase">Conectando Inteligencia Artificial</span>
-      <span class="hero-frase">Simplificando Procesos</span>
-      <span class="hero-frase">Empoderando Personas</span>
-    </div>
-    <div class="hero-btns">
-      <a href="https://wa.me/5256626285511" target="_blank" class="btn-wa"><i class="fa-brands fa-whatsapp"></i> Escribir por WhatsApp</a>
-      <a href="#pregunta" class="btn-ghost">Ver cómo trabajo</a>
+    <!-- Derecha: título -->
+    <div>
+      <span class="hero-eyebrow" style="text-align:left;">Arturo Barrios</span>
+      <h1 class="hero-title" style="text-align:left;">Asesor de Crecimiento Estratégico</h1>
+      <div class="hero-frases" style="justify-content:flex-start;">
+        <span class="hero-frase" style="padding-left:0;">Conectando Inteligencia Artificial</span>
+        <span class="hero-frase">Simplificando Procesos</span>
+        <span class="hero-frase">Empoderando Personas</span>
+      </div>
+      <div class="hero-btns" style="justify-content:flex-start;margin-top:28px;">
+        <a href="https://wa.me/5256626285511" target="_blank" class="btn-wa"><i class="fa-brands fa-whatsapp"></i> Escribir por WhatsApp</a>
+        <a href="#pregunta" class="btn-ghost">Ver cómo trabajo</a>
+      </div>
     </div>
   </div>
 </section>
