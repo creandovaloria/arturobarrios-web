@@ -262,6 +262,17 @@ footer { background: var(--ink); padding: 32px 6%; display: flex; align-items: c
   .footer-links { justify-content: center; flex-wrap: wrap; }
   .footer-right { text-align: center; }
 }
+
+/* ─── STATS ─── */
+.stats-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:16px; }
+.stat-card { background:var(--white); border:1px solid var(--border); border-radius:12px; padding:28px 24px; text-align:center; }
+.stat-n { font-family:'Montserrat',sans-serif; font-size:2.4rem; font-weight:700; color:var(--blue-dark); line-height:1; margin-bottom:8px; }
+.stat-l { font-size:0.82rem; color:var(--ink-dim); line-height:1.6; font-weight:300; }
+.emp-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.emp-card { background:var(--white); border:1px solid var(--border); border-radius:12px; padding:24px; }
+.emp-label { font-family:'Montserrat',sans-serif; font-size:0.75rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:8px; }
+.emp-desc { font-size:0.85rem; color:var(--ink-mid); line-height:1.65; font-weight:300; }
+@media(max-width:768px){ .stats-grid,.emp-grid{grid-template-columns:1fr;} }
 </style>
 </head>
 <body>
@@ -285,60 +296,61 @@ footer { background: var(--ink); padding: 32px 6%; display: flex; align-items: c
 <!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-inner reveal">
-    <span class="hero-eyebrow">Arturo Barrios</span>
-    <h1 class="hero-title">Asesor de Crecimiento Estratégico</h1>
+    <span class="hero-eyebrow">Una pregunta para ti</span>
+    <h1 class="hero-title">Tu empresa trabaja mucho.<br>¿Por qué no crece más rápido?</h1>
+    <p class="hero-desc">La mayoría de las organizaciones no tienen problema de esfuerzo. Tienen un problema de conexión: la tecnología va por un lado, los procesos por otro y los equipos por otro. Yo conecto esos tres mundos.</p>
     <div class="hero-frases">
-      <span class="hero-frase">Conectando Inteligencia Artificial</span>
-      <span class="hero-frase">Simplificando Procesos</span>
-      <span class="hero-frase">Empoderando Personas</span>
+      <span class="hero-frase">Inteligencia Artificial</span>
+      <span class="hero-frase">Procesos</span>
+      <span class="hero-frase">Personas</span>
+      <span class="hero-frase">Crecimiento real</span>
     </div>
-    <p class="hero-desc">Tu empresa trabaja mucho. Yo te ayudo a conectar tecnología, procesos y personas para que ese esfuerzo se convierta en crecimiento real.</p>
     <div class="hero-btns">
       <a href="https://wa.me/5256626285511" target="_blank" class="btn-wa"><i class="fa-brands fa-whatsapp"></i> Escribir por WhatsApp</a>
       <a href="#como-trabajo" class="btn-ghost">Ver cómo trabajo</a>
     </div>
+    <div style="margin-top:20px;font-size:0.8rem;color:rgba(255,255,255,0.5);font-weight:600;letter-spacing:0.05em;">Arturo Barrios &nbsp;·&nbsp; Asesor de Crecimiento Estratégico</div>
   </div>
 </section>
 
 <!-- CÓMO TRABAJO -->
 <section class="section section-bg-white" id="como-trabajo">
   <div class="reveal">
-    <div class="sec-label">Mi metodología</div>
-    <div class="sec-title">¿Cómo trabajo?</div>
+    <div class="sec-label">Mi enfoque</div>
+    <div class="sec-title" style="font-size:clamp(1.4rem,2.5vw,1.9rem);margin-bottom:12px;">Mi enfoque: los tres pilares trabajando juntos, no por separado</div>
+    <p style="font-size:0.95rem;color:var(--ink-dim);font-weight:300;line-height:1.75;max-width:680px;margin-bottom:36px;">No soy un especialista en una sola cosa. Mi valor está en conectar los tres mundos al mismo tiempo para generar resultados reales y duraderos.</p>
   </div>
   <div class="pilares-grid">
     <div class="pilar-card pilar-azul reveal">
       <div class="pilar-header">
         <div class="pilar-ico ico-azul"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2C12 2 7 6 7 13h10c0-7-5-11-5-11z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 13v3a3 3 0 0 0 6 0v-3" stroke="white" stroke-width="2" stroke-linecap="round"/><path d="M7 13c-1.5 0-3 1-3 3l3-1" stroke="white" stroke-width="1.8" stroke-linecap="round"/><path d="M17 13c1.5 0 3 1 3 3l-3-1" stroke="white" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="9" r="1.5" fill="white"/></svg></div>
-        <h3 class="pilar-nombre">IA y Sistemas</h3>
+        <h3 class="pilar-nombre">IA para simplificar</h3>
       </div>
-      <p class="pilar-desc">Dejas de hacer a mano lo que una máquina puede hacer mejor.</p>
-      <span class="pilar-desc-bold">Tú y tu equipo recuperan tiempo para enfocarse en lo que realmente mueve el negocio.</span>
+      <p class="pilar-desc">Implementamos IA donde realmente genera impacto, no donde está de moda.</p>
+      <span class="pilar-desc-bold">Menos tareas manuales, más tiempo para lo estratégico.</span>
     </div>
     <div class="pilar-card pilar-verde reveal rd1">
       <div class="pilar-header">
         <div class="pilar-ico ico-verde"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="white" stroke-width="2"/><rect x="14" y="3" width="7" height="7" rx="1.5" stroke="white" stroke-width="2"/><rect x="3" y="14" width="7" height="7" rx="1.5" stroke="white" stroke-width="2"/><rect x="14" y="14" width="7" height="7" rx="1.5" stroke="white" stroke-width="2"/></svg></div>
-        <h3 class="pilar-nombre">Procesos</h3>
+        <h3 class="pilar-nombre">Procesos que funcionan</h3>
       </div>
-      <p class="pilar-desc">Tu empresa deja de operar en modo caos.</p>
-      <span class="pilar-desc-bold">Cada área sabe qué hacer, cómo hacerlo y por qué.</span>
-      <span class="pilar-desc-bold">La estrategia deja de perderse en el camino.</span>
+      <p class="pilar-desc">Mapeamos, simplificamos y estandarizamos la forma en que trabaja tu empresa.</p>
+      <span class="pilar-desc-bold">Para que crecer no signifique caos.</span>
     </div>
     <div class="pilar-card pilar-morado reveal rd2">
       <div class="pilar-header">
         <div class="pilar-ico ico-morado"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="white" stroke-width="2" stroke-linecap="round"/><circle cx="9" cy="7" r="4" stroke="white" stroke-width="2"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div>
-        <h3 class="pilar-nombre">Personas</h3>
+        <h3 class="pilar-nombre">Equipos que innovan de verdad</h3>
       </div>
-      <p class="pilar-desc">Tu equipo no solo ejecuta —</p>
-      <span class="pilar-desc-bold">propone, innova y se adapta.</span>
-      <span class="pilar-desc-bold">Construyes una cultura donde todos empujan en la misma dirección y el crecimiento se sostiene solo.</span>
+      <p class="pilar-desc">Desarrollamos líderes y equipos donde la innovación no depende de una sola persona.</p>
+      <span class="pilar-desc-bold">Sino de toda la cultura.</span>
     </div>
   </div>
   <div class="formula reveal">
     <span class="f-pill">IA y Sistemas</span><span class="f-op">+</span>
     <span class="f-pill">Procesos</span><span class="f-op">+</span>
     <span class="f-pill">Personas</span><span class="f-op">=</span>
-    <span class="f-res">Crecimiento Estratégico</span>
+    <span class="f-res">Crecimiento estratégico y sostenible</span>
   </div>
 </section>
 
@@ -372,29 +384,39 @@ footer { background: var(--ink); padding: 32px 6%; display: flex; align-items: c
   </div>
 </section>
 
-<!-- SOBRE MÍ -->
+<!-- TRAYECTORIA -->
 <section class="section section-bg-white" id="sobre-mi">
-  <div class="about-grid">
-    <div class="reveal">
-      <div class="about-label">Sobre mí</div>
-      <h2 class="about-title">Consultor que también ejecuta</h2>
-      <p class="about-text">Soy <strong>Arturo Barrios</strong>, y me especializo en algo que pocos ofrecen: no solo diseño la estrategia de crecimiento de tu empresa — la implemento contigo.</p>
-      <p class="about-text">Con una trayectoria liderando iniciativas de alto impacto en organizaciones de clase mundial, entiendo tanto el lado de negocio como el técnico. Eso me permite darte soluciones reales, no solo recomendaciones.</p>
-      <div class="creds">
-        <div class="cred"><div class="cred-icon">🏅</div>PMP Certified — Gestión de proyectos</div>
-        <div class="cred"><div class="cred-icon">⚡</div>Scrum Master — Metodologías ágiles</div>
-        <div class="cred"><div class="cred-icon">🤖</div>Especialista en IA aplicada a negocios</div>
-      </div>
+  <div class="reveal">
+    <div class="sec-label">Trayectoria</div>
+    <div class="sec-title">No es teoría. Es trayectoria real.</div>
+    <p style="font-size:0.95rem;color:var(--ink-dim);font-weight:300;line-height:1.75;max-width:600px;margin-bottom:48px;">Más de 15 años generando resultados en organizaciones de clase mundial y cientos de líderes acompañados.</p>
+  </div>
+  <div class="stats-grid reveal">
+    <div class="stat-card">
+      <div class="stat-n">+15</div>
+      <div class="stat-l">años liderando iniciativas de transformación en organizaciones de clase mundial</div>
     </div>
-    <div class="reveal rd2">
-      <div class="about-quote-card">
-        <div class="about-quote">"Cada hora que tu negocio pierde en tareas manuales, es una hora que no estás creciendo."</div>
-        <div class="about-attr">— Arturo Barrios</div>
-      </div>
-      <div class="about-stats">
-        <div class="about-stat"><div class="about-stat-n">+15</div><div class="about-stat-l">años de experiencia empresarial</div></div>
-        <div class="about-stat"><div class="about-stat-n">1,000+</div><div class="about-stat-l">profesionales alcanzados</div></div>
-      </div>
+    <div class="stat-card">
+      <div class="stat-n">1,000+</div>
+      <div class="stat-l">profesionales alcanzados a través del liderazgo ejecutivo en comunidades de práctica</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-n">3 en 1</div>
+      <div class="stat-l">IA, procesos y personas integrados al mismo tiempo, no en silos</div>
+    </div>
+  </div>
+  <div class="emp-grid reveal" style="margin-top:16px;">
+    <div class="emp-card">
+      <div class="emp-label" style="color:var(--blue-dark);">Empresas globales</div>
+      <div class="emp-desc">Experiencia liderando transformación operativa y ágil en organizaciones de clase mundial</div>
+    </div>
+    <div class="emp-card">
+      <div class="emp-label" style="color:var(--green);">Red de Profesionales</div>
+      <div class="emp-desc">Cientos de líderes acompañados en su proceso de transformación y crecimiento</div>
+    </div>
+    <div class="emp-card">
+      <div class="emp-label" style="color:var(--purple);">Comunidades de Estudio y Práctica</div>
+      <div class="emp-desc">Liderazgo activo en comunidades de práctica y desarrollo profesional de alto impacto</div>
     </div>
   </div>
 </section>
@@ -492,10 +514,10 @@ footer { background: var(--ink); padding: 32px 6%; display: flex; align-items: c
 <section class="section section-bg-light" id="contacto">
   <div class="cta-grid">
     <div class="reveal">
-      <div class="cta-label">Hablemos</div>
-      <h2 class="cta-title">¿Listo para dar el<br><em>siguiente paso?</em></h2>
-      <p class="cta-text">Sin compromisos ni presión. Cuéntame qué necesitas y en menos de 24 horas te respondo con ideas concretas y un presupuesto real.</p>
-      <a href="https://wa.me/5256626285511" target="_blank" class="btn-primary"><i class="fa-brands fa-whatsapp"></i> Escribir a Arturo →</a>
+      <div class="cta-label">Siguiente paso</div>
+      <h2 class="cta-title">¿Quieres explorar cómo conectar IA, procesos y personas en tu organización?</h2>
+      <p class="cta-text">Sin compromisos ni presión. Agenda una sesión de diagnóstico gratuita de 30 minutos.</p>
+      <a href="https://wa.me/5256626285511" target="_blank" class="btn-primary"><i class="fa-brands fa-whatsapp"></i> Quiero agendar mi sesión →</a>
     </div>
     <div class="cta-card reveal rd2">
       <div class="cta-card-title">¿Qué necesitas? (elige uno)</div>
