@@ -1,6 +1,8 @@
 export const SITE_NAME = 'Arturo Barrios';
 export const SITE_DESCRIPTION = 'Full-Stack Developer & Digital Product Creator';
 export const SITE_URL = 'https://arturobarrios.com';
+export const WHATSAPP_NUMBER = '+525555027042';
+export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER.replace(/\D/g, '')}`;
 export const TWITTER_URL = 'https://x.com/arturobarrios';
 export const GITHUB_URL = 'https://github.com/arturobarrios';
 export const LINKEDIN_URL = 'https://linkedin.com/in/arturobarrios';
