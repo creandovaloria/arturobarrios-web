@@ -37,23 +37,15 @@ export const StatCounter: React.FC<StatCounterProps> = ({
   duration = 2000,
   className = '',
 }) => {
-  const { ref, isInView } = useInViewAnimation({ once: true, amount: 0.5 });
+  const { ref, isInView } = useInViewAnimation({ once: true, amount: 0.3 });
   const prefersReducedMotion = useReducedMotion();
-  const [hasAnimated, setHasAnimated] = useState(false);
 
-  // Activar animación cuando está en vista
-  React.useEffect(() => {
-    if (isInView && !hasAnimated) {
-      setHasAnimated(true);
-    }
-  }, [isInView, hasAnimated]);
-
-  // Hook para contar - trigger en carga inicial o scroll
+  // Hook para contar - trigger siempre activo (componente puede estar fuera de vista inicialmente)
   const displayValue = useCountUp({
     end: value,
     duration,
     start: 0,
-    trigger: hasAnimated || prefersReducedMotion,
+    trigger: true,
     decimals: 0,
     prefix,
     suffix,
