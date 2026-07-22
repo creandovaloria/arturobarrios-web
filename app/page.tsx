@@ -2,6 +2,8 @@
 
 import HeroSection from '@sections/HeroSection';
 import ProblemSection from '@sections/ProblemSection';
+import TransformationSection from '@sections/TransformationSection';
+import PillarsSection from '@sections/PillarsSection';
 
 export default function Home() {
   const handleDiagnosis = () => {
@@ -37,6 +39,26 @@ export default function Home() {
         statLabel="mejora en eficiencia"
         ctaLabel="Agenda una consulta gratuita"
         onCTA={handleDiagnosis}
+      />
+
+      {/* Transformation Section - SPRINT 5 */}
+      <TransformationSection
+        beforeVideo="/videos/transformation-before.mp4"
+        afterVideo="/videos/transformation-after.mp4"
+        beforePoster="/images/transformation-before.jpg"
+        afterPoster="/images/transformation-after.jpg"
+        beforeLabel="Caos"
+        afterLabel="Orden"
+        headline="No necesitas aprender tecnología nueva. Usamos lo que ya tienes."
+        subheadline="Transforma tu operación manteniendo lo que funciona"
+        ctaLabel="Ver más transformaciones"
+        onCTA={handleViewWork}
+      />
+
+      {/* Pillars Section - SPRINT 4 */}
+      <PillarsSection
+        headline="Mi enfoque: los tres pilares trabajando juntos, no por separado"
+        subheadline="No soy un especialista en una sola cosa. La solución que tu empresa necesita vive en la intersección de IA, procesos bien diseñados y personas empoderadas."
       />
     </main>
   );
