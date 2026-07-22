@@ -29,7 +29,7 @@ interface HeroSectionProps {
  * - Fully responsive & accessible
  */
 export const HeroSection: React.FC<HeroSectionProps> = ({
-  backgroundVideo = '/videos/hero-background.mp4',
+  backgroundVideo = 'https://res.cloudinary.com/dl66zeuix/video/upload/v1784689128/Cinematic_looping_video_sec_riq870.mp4',
   posterImage = '/images/hero-poster.jpg',
   headline = 'Tu negocio ya funciona. Nosotros lo hacemos',
   subheadline = 'Conectando IA • Simplificando Procesos • Empoderando Personas',

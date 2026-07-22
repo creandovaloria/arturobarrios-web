@@ -45,7 +45,7 @@ interface TransformationSectionProps {
  * 3. Overlay text: slideUp + fade
  */
 export const TransformationSection: React.FC<TransformationSectionProps> = ({
-  beforeVideo = '/videos/transformation-before.mp4',
+  beforeVideo = 'https://res.cloudinary.com/dl66zeuix/video/upload/v1784689351/Cinematic_looping_video_sec_1_kr02el.mp4',
   afterVideo = '/videos/transformation-after.mp4',
   beforePoster = '/images/transformation-before.jpg',
   afterPoster = '/images/transformation-after.jpg',
