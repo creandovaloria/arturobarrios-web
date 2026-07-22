@@ -2,10 +2,6 @@
   "buildCommand": "npm run build",
   "outputDirectory": ".next",
   "installCommand": "npm install",
-  "env": {
-    "NEXT_PUBLIC_SITE_URL": "@next_public_site_url",
-    "NEXT_PUBLIC_GA_ID": "@next_public_ga_id"
-  },
   "regions": ["sfo1"],
   "functions": {
     "api/**/*.ts": {
