@@ -2,6 +2,8 @@
 
 Personal website and portfolio showcasing digital transformation services, AI integration, and process optimization for growing organizations.
 
+<!-- Rollback to initial version -->
+
 ## Overview
 
 This is a modern, high-performance Next.js application built to showcase Arturo Barrios' expertise in:
