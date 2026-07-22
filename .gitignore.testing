@@ -1,0 +1,20 @@
+# Testing output
+coverage/
+.nyc_output/
+test-results/
+html-results/
+playwright-report/
+playwright/.cache/
+.vitest/
+
+# Lighthouse reports
+lighthouse-report.html
+lighthouse-results.json
+
+# Accessibility reports
+pa11y-results.json
+a11y-report/
+
+# E2E test artifacts
+test-results/
+*.traceViewer

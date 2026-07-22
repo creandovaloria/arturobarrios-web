@@ -1,0 +1,17 @@
+{
+  "runners": ["axe", "htmlcs"],
+  "standard": "WCAG2AA",
+  "level": "error",
+  "timeout": 10000,
+  "wait": 1000,
+  "chromeLaunchConfig": {
+    "args": ["--no-sandbox", "--disable-setuid-sandbox"]
+  },
+  "urls": [
+    "http://localhost:3000/",
+    "http://localhost:3000/about",
+    "http://localhost:3000/services",
+    "http://localhost:3000/blog",
+    "http://localhost:3000/contact"
+  ]
+}

@@ -310,26 +310,26 @@ export const GearAnimation: React.FC<GearAnimationProps> = ({
       >
         {/* Línea IA -> Procesos */}
         <line
-          x1={gearPositions[0].x + size / 2}
-          y1={gearPositions[0].y + size / 2}
-          x2={gearPositions[1].x + size / 2}
-          y2={gearPositions[1].y + size / 2}
+          x1={(gearPositions[0]?.x ?? 0) + size / 2}
+          y1={(gearPositions[0]?.y ?? 0) + size / 2}
+          x2={(gearPositions[1]?.x ?? 0) + size / 2}
+          y2={(gearPositions[1]?.y ?? 0) + size / 2}
         />
 
         {/* Línea Procesos -> Personas */}
         <line
-          x1={gearPositions[1].x + size / 2}
-          y1={gearPositions[1].y + size / 2}
-          x2={gearPositions[2].x + size / 2}
-          y2={gearPositions[2].y + size / 2}
+          x1={(gearPositions[1]?.x ?? 0) + size / 2}
+          y1={(gearPositions[1]?.y ?? 0) + size / 2}
+          x2={(gearPositions[2]?.x ?? 0) + size / 2}
+          y2={(gearPositions[2]?.y ?? 0) + size / 2}
         />
 
         {/* Línea Personas -> IA */}
         <line
-          x1={gearPositions[2].x + size / 2}
-          y1={gearPositions[2].y + size / 2}
-          x2={gearPositions[0].x + size / 2}
-          y2={gearPositions[0].y + size / 2}
+          x1={(gearPositions[2]?.x ?? 0) + size / 2}
+          y1={(gearPositions[2]?.y ?? 0) + size / 2}
+          x2={(gearPositions[0]?.x ?? 0) + size / 2}
+          y2={(gearPositions[0]?.y ?? 0) + size / 2}
         />
       </motion.g>
 

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useInViewAnimation, useReducedMotion } from '@hooks';
+import { useInViewAnimation } from '@hooks';
 import { durations, easings } from '@lib/motion';
 import { GearAnimation, StatCounter } from '@components/molecules';
 
@@ -47,7 +47,6 @@ export const ProblemSection: React.FC<ProblemSectionProps> = ({
   onCTA,
 }) => {
   const { ref, isInView } = useInViewAnimation({ once: true, amount: 0.3 });
-  const prefersReducedMotion = useReducedMotion();
 
   // Variantes de animación
   const containerVariants = {

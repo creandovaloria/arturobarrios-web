@@ -5,3 +5,4 @@ export { default as Input } from './Input';
 export { default as Link } from './Link';
 export { default as Kicker } from './Kicker';
 export { default as Icon } from './Icon';
+export { ParticleIcon } from './ParticleIcon';
