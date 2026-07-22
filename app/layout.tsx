@@ -1,11 +1,13 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from '@lib/constants';
+import SchemaMarkup from '@components/SchemaMarkup';
 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
+  themeColor: '#ffffff',
 };
 
 export const metadata: Metadata = {
@@ -15,9 +17,22 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
-  keywords: ['developer', 'designer', 'digital products', 'full-stack'],
-  authors: [{ name: 'Arturo Barrios' }],
+  keywords: [
+    'full-stack developer',
+    'digital products',
+    'AI integration',
+    'process automation',
+    'Mexico',
+    'software development',
+    'next.js',
+    'react',
+  ],
+  authors: [{ name: 'Arturo Barrios', url: SITE_URL }],
   creator: 'Arturo Barrios',
+  publisher: SITE_NAME,
+  applicationName: SITE_NAME,
+  category: 'Technology',
+  classification: 'Professional Services',
   openGraph: {
     type: 'website',
     locale: 'es_MX',
@@ -25,16 +40,43 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
+    images: [
+      {
+        url: `${SITE_URL}/images/hero-poster.jpg`,
+        width: 1200,
+        height: 630,
+        alt: SITE_NAME,
+        type: 'image/jpeg',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
     creator: '@arturobarrios',
+    images: [`${SITE_URL}/images/hero-poster.jpg`],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: SITE_URL,
+    languages: {
+      es: SITE_URL,
+      'es-MX': SITE_URL,
+    },
+  },
+  verification: {
+    google: 'google-site-verification-code', // Replace with actual verification code
   },
 };
 
@@ -43,6 +85,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="es">
       <head>
         <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#ffffff" />
+        <meta name="color-scheme" content="light dark" />
+        <meta name="description" content={SITE_DESCRIPTION} />
+        <link rel="canonical" href={SITE_URL} />
+        <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
+        <SchemaMarkup />
       </head>
       <body>{children}</body>
     </html>

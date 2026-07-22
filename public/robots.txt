@@ -1,0 +1,22 @@
+# Robots.txt for arturobarrios.com
+# Allow all bots
+
+User-agent: *
+Allow: /
+
+# Specific rules
+Disallow: /api/
+Disallow: /.next/
+Disallow: /node_modules/
+
+# Sitemaps
+Sitemap: https://arturobarrios.com/sitemap.xml
+
+# Crawl delay (be nice to servers)
+Crawl-delay: 1
+
+# Block bad bots
+User-agent: AhrefsBot
+User-agent: SemrushBot
+User-agent: DotBot
+Disallow: /
