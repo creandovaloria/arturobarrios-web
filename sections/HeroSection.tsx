@@ -119,7 +119,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         {/* Content Container */}
         <div className="relative z-10 w-full max-w-6xl px-4 sm:px-6 lg:px-8 py-20">
           <motion.div
-            className="flex flex-col items-start justify-center gap-8 md:gap-12"
+            className="flex flex-col items-center justify-center gap-8 md:gap-12 mx-auto"
             variants={containerVariants}
             initial="hidden"
             animate={prefersReducedMotion ? 'visible' : 'visible'}
