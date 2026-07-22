@@ -48,12 +48,12 @@ export const StatCounter: React.FC<StatCounterProps> = ({
     }
   }, [isInView, hasAnimated]);
 
-  // Hook para contar
+  // Hook para contar - trigger en carga inicial o scroll
   const displayValue = useCountUp({
     end: value,
     duration,
     start: 0,
-    trigger: isInView || prefersReducedMotion,
+    trigger: hasAnimated || prefersReducedMotion,
     decimals: 0,
     prefix,
     suffix,
