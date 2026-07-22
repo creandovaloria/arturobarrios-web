@@ -1,6 +1,7 @@
 'use client';
 
 import HeroSection from '@sections/HeroSection';
+import ProblemSection from '@sections/ProblemSection';
 
 export default function Home() {
   const handleDiagnosis = () => {
@@ -28,13 +29,15 @@ export default function Home() {
         onCTA2={handleViewWork}
       />
 
-      {/* Placeholder para siguiente sección */}
-      <section className="min-h-screen bg-paper flex items-center justify-center">
-        <div className="text-center">
-          <h2 className="text-h2 mb-4">Próxima Sección</h2>
-          <p className="text-body text-fg-muted">Contenido adicional</p>
-        </div>
-      </section>
+      {/* Problem Section - SPRINT 3 */}
+      <ProblemSection
+        headline="Tu empresa trabaja mucho. ¿Por qué no crece"
+        subheadline="La mayoría de las organizaciones no tienen problema de esfuerzo. Tienen un problema de visión, procesos y alineación. Nosotros conectamos IA, simplificamos procesos y empoderamos personas para que tu negocio crezca sin límites."
+        statValue={70}
+        statLabel="mejora en eficiencia"
+        ctaLabel="Agenda una consulta gratuita"
+        onCTA={handleDiagnosis}
+      />
     </main>
   );
 }
