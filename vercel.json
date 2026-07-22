@@ -6,7 +6,7 @@
     "NEXT_PUBLIC_SITE_URL": "@next_public_site_url",
     "NEXT_PUBLIC_GA_ID": "@next_public_ga_id"
   },
-  "regions": ["sfo1", "cdmx1"],
+  "regions": ["sfo1"],
   "functions": {
     "api/**/*.ts": {
       "memory": 1024,
