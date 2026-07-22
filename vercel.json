@@ -3,25 +3,6 @@
   "outputDirectory": ".next",
   "installCommand": "npm install",
   "regions": ["sfo1"],
-  "functions": {
-    "api/**/*.ts": {
-      "memory": 1024,
-      "maxDuration": 30
-    }
-  },
-  "redirects": [
-    {
-      "source": "/blog/:slug",
-      "destination": "/posts/:slug",
-      "permanent": true
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/:path*",
-      "destination": "/:path*"
-    }
-  ],
   "headers": [
     {
       "source": "/(.*)",
