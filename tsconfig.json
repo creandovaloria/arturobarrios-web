@@ -24,8 +24,7 @@
     "noUncheckedIndexedAccess": true,
     "allowUnusedLabels": false,
     "allowUnreachableCode": false,
-    /* Path aliases */
-    "baseUrl": ".",
+    /* Path aliases (relativos al tsconfig; TS 6 deprecó baseUrl) */
     "paths": {
       "@/*": [
         "./*"

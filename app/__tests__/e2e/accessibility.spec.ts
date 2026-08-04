@@ -201,7 +201,6 @@ test.describe('Accessibility Testing', () => {
     if (tableCount > 0) {
       for (let i = 0; i < tableCount; i++) {
         const table = tables.nth(i);
-        const headers = table.locator('th');
         const rows = table.locator('tr');
 
         expect(await rows.count()).toBeGreaterThan(0);

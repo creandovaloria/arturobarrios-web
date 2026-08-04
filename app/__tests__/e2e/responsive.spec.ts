@@ -1,10 +1,4 @@
-import { test, expect, devices } from '@playwright/test';
-
-const BREAKPOINTS = {
-  mobile: { width: 375, height: 812, device: 'iPhone 12' },
-  tablet: { width: 768, height: 1024, device: 'iPad' },
-  desktop: { width: 1280, height: 800, device: 'Desktop' },
-};
+import { test, expect } from '@playwright/test';
 
 test.describe('Responsive Design Testing', () => {
   test('mobile layout (375px)', async ({ page }) => {

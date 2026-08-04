@@ -94,7 +94,6 @@ describe('Component Integration Tests', () => {
     });
 
     it('validates form inputs', async () => {
-      const user = userEvent.setup();
 
       render(
         <form>
@@ -140,7 +139,7 @@ describe('Component Integration Tests', () => {
     });
 
     it('maintains focus ring visibility through components', () => {
-      const { container } = render(
+      render(
         <Card>
           <Button>Focusable</Button>
         </Card>,
@@ -167,7 +166,6 @@ describe('Component Integration Tests', () => {
 
   describe('State Management', () => {
     it('handles state updates across components', async () => {
-      const user = userEvent.setup();
 
       const TestComponent = () => {
         const [value, setValue] = React.useState('');
@@ -185,6 +183,7 @@ describe('Component Integration Tests', () => {
         );
       };
 
+      const user = userEvent.setup();
       render(<TestComponent />);
       const input = screen.getByPlaceholderText('Type something') as HTMLInputElement;
 
