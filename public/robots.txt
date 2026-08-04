@@ -20,3 +20,7 @@ User-agent: AhrefsBot
 User-agent: SemrushBot
 User-agent: DotBot
 Disallow: /
+
+# Herramienta interna (no indexar)
+User-agent: *
+Disallow: /facturacion

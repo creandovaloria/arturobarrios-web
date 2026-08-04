@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useReducedMotion } from '@hooks';
-import { springs, easings, durations } from '@lib/motion';
+import { easings, durations } from '@lib/motion';
 import { Badge } from '@components/atoms';
 import { BackgroundVideo, MorphingText, CustomCursor } from '@components/molecules';
 
@@ -76,23 +76,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         duration: 3,
         repeat: Infinity,
         ease: easings.easeInOutSmooth,
-      },
-    },
-  };
-
-  // CTA button glow effect
-  const glowVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 },
-    hover: {
-      boxShadow: [
-        '0 0 20px rgba(46, 91, 255, 0.5)',
-        '0 0 40px rgba(46, 91, 255, 0.8)',
-        '0 0 20px rgba(46, 91, 255, 0.5)',
-      ],
-      transition: {
-        duration: 2,
-        repeat: Infinity,
       },
     },
   };

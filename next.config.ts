@@ -2,6 +2,13 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  // Herramienta interna de facturación (HTML autocontenido en /public)
+  rewrites: async () => [
+    {
+      source: '/facturacion',
+      destination: '/facturacion.html',
+    },
+  ],
   // Image optimization
   images: {
     formats: ['image/avif', 'image/webp'],
