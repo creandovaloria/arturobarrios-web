@@ -1,6 +1,6 @@
 'use client';
 
-import { forwardRef } from 'react';
+import { forwardRef, useId } from 'react';
 import { cn } from '@lib/cn';
 import type { InputProps } from '@lib/types';
 
@@ -15,10 +15,13 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       icon,
       className,
       disabled,
+      id,
       ...props
     },
     ref,
   ) => {
+    const autoId = useId();
+    const inputId = id ?? autoId;
     const sizeClasses = {
       sm: 'px-3 py-1.5 text-body-sm',
       md: 'px-4 py-2.5 text-body',
@@ -33,12 +36,18 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className={cn('w-full', className)}>
         {label && (
-          <label className="block text-body font-medium text-fg mb-2">{label}</label>
+          <label
+            htmlFor={inputId}
+            className="block text-body font-medium text-fg mb-2"
+          >
+            {label}
+          </label>
         )}
 
         <div className="relative flex items-center">
           <input
             ref={ref}
+            id={inputId}
             disabled={disabled}
             className={cn(
               'w-full font-body rounded-lg transition-colors',

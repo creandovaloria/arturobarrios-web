@@ -1,10 +1,29 @@
 import { renderHook, act } from '@testing-library/react';
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { useMousePosition } from '@hooks/useMousePosition';
+
+function mockMatchMedia(matches: boolean) {
+  Object.defineProperty(window, 'matchMedia', {
+    writable: true,
+    value: vi.fn().mockImplementation((query: string) => ({
+      matches,
+      media: query,
+      onchange: null,
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      dispatchEvent: vi.fn(),
+    })),
+  });
+}
 
 describe('useMousePosition Hook', () => {
   beforeEach(() => {
     vi.useFakeTimers();
+    // El hook requiere (pointer: fine); el setup global responde matches: false,
+    // así que simulamos un dispositivo con mouse por defecto
+    mockMatchMedia(true);
   });
 
   afterEach(() => {
@@ -117,21 +136,7 @@ describe('useMousePosition Hook', () => {
   });
 
   it('disables on touch devices', () => {
-    const mockMatchMedia = vi.fn(() => ({
-      matches: false, // pointer: coarse (touch device)
-      media: '(pointer: fine)',
-      onchange: null,
-      addListener: vi.fn(),
-      removeListener: vi.fn(),
-      addEventListener: vi.fn(),
-      removeEventListener: vi.fn(),
-      dispatchEvent: vi.fn(),
-    }));
-
-    Object.defineProperty(window, 'matchMedia', {
-      writable: true,
-      value: mockMatchMedia,
-    });
+    mockMatchMedia(false); // pointer: coarse (touch device)
 
     const addEventListenerSpy = vi.spyOn(window, 'addEventListener');
     renderHook(() => useMousePosition());

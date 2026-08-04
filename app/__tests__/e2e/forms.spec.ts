@@ -5,9 +5,18 @@ test.describe('Form Testing', () => {
     await page.goto('/');
   });
 
-  test('contact form is present and accessible', async ({ page }) => {
-    const form = page.locator('form').first();
-    await expect(form).toBeVisible();
+  test('contact CTAs are present and accessible', async ({ page }) => {
+    // The redesigned landing has no contact form: the contact path is the
+    // hero CTA pair. Both must be visible, enabled and correctly named.
+    const primaryCta = page.getByRole('button', {
+      name: 'Agenda tu diagnóstico gratuito',
+    });
+    await expect(primaryCta).toBeVisible();
+    await expect(primaryCta).toBeEnabled();
+
+    const secondaryCta = page.getByRole('button', { name: 'Ver cómo trabajo' });
+    await expect(secondaryCta).toBeVisible();
+    await expect(secondaryCta).toBeEnabled();
   });
 
   test('form inputs are properly labeled', async ({ page }) => {

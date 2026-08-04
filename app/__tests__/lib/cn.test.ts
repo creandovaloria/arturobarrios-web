@@ -62,10 +62,11 @@ describe('cn utility', () => {
     expect(result).toContain('py-2');
   });
 
-  it('removes duplicate classes', () => {
+  it('keeps duplicate classes (clsx does not deduplicate)', () => {
+    // cn usa clsx sin tailwind-merge: los duplicados se conservan tal cual,
+    // lo cual es inofensivo en CSS (la clase aplica una sola vez)
     const result = cn('px-4', 'px-4', 'py-2');
-    const match = result.match(/px-4/g);
-    expect(match).toHaveLength(1);
+    expect(result).toBe('px-4 px-4 py-2');
   });
 
   it('handles tailwind override classes', () => {

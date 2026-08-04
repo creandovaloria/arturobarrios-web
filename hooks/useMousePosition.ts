@@ -59,7 +59,13 @@ export function useMousePosition(
   return {
     x,
     y,
-    rawX: posRef.current.rawX,
-    rawY: posRef.current.rawY,
+    // Getters: leer siempre el valor actual del ref, no una copia
+    // congelada en el último render (el hook no re-renderiza en mousemove)
+    get rawX() {
+      return posRef.current.rawX;
+    },
+    get rawY() {
+      return posRef.current.rawY;
+    },
   };
 }

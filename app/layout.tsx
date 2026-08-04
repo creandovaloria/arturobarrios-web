@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from '@lib/constants';
 import SchemaMarkup from '@components/SchemaMarkup';
+import Footer from '@components/organisms/Footer';
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -84,16 +85,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es">
       <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#ffffff" />
+        {/* charset, viewport, theme-color, description y canonical los genera
+            Next.js desde los exports `metadata` y `viewport` de este archivo.
+            No duplicar aquí (duplicarlos rompe SEO y los tests E2E). */}
         <meta name="color-scheme" content="light dark" />
-        <meta name="description" content={SITE_DESCRIPTION} />
-        <link rel="canonical" href={SITE_URL} />
         <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
         <SchemaMarkup />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

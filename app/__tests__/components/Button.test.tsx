@@ -10,14 +10,21 @@ describe('Button Component', () => {
   });
 
   it('renders with different variants', () => {
-    const variants = ['primary', 'secondary', 'ghost', 'outline'] as const;
+    const variantClasses = {
+      primary: 'bg-brand-500',
+      secondary: 'bg-neutral-200',
+      ghost: 'bg-transparent',
+      outline: 'border-brand-500',
+    } as const;
 
-    variants.forEach((variant) => {
-      const { unmount } = render(<Button variant={variant}>Test</Button>);
-      const button = screen.getByRole('button');
-      expect(button).toHaveClass(`bg-${variant === 'primary' ? 'brand' : 'neutral'}`);
-      unmount();
-    });
+    (Object.keys(variantClasses) as Array<keyof typeof variantClasses>).forEach(
+      (variant) => {
+        const { unmount } = render(<Button variant={variant}>Test</Button>);
+        const button = screen.getByRole('button');
+        expect(button).toHaveClass(variantClasses[variant]);
+        unmount();
+      },
+    );
   });
 
   it('renders with different sizes', () => {

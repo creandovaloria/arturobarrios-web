@@ -74,7 +74,9 @@ describe('useCountUp Hook', () => {
     );
 
     act(() => {
-      vi.advanceTimersByTime(1000);
+      // El primer frame de rAF llega ~16ms después del montaje y fija el t0
+      // de la animación, así que avanzamos un poco más que `duration`
+      vi.advanceTimersByTime(1100);
     });
 
     expect(result.current).toBe('100.00');
@@ -114,17 +116,18 @@ describe('useCountUp Hook', () => {
       useCountUp({ start: 0, end: 100, duration: 1000 }),
     );
 
-    const quarter = parseInt(result.current, 10);
-
     act(() => {
       vi.advanceTimersByTime(250);
     });
 
-    const quarter1 = parseInt(result.current, 10);
-    expect(quarter1).toBeLessThan(25); // Ease out quad starts slow
+    // easeOutQuad arranca rápido: al 25% del tiempo el valor supera
+    // el 25% que daría una progresión lineal
+    const quarter = parseInt(result.current, 10);
+    expect(quarter).toBeGreaterThan(25);
+    expect(quarter).toBeLessThan(100);
 
     act(() => {
-      vi.advanceTimersByTime(750);
+      vi.advanceTimersByTime(850);
     });
 
     expect(result.current).toBe('100');

@@ -98,8 +98,20 @@ test.describe('Homepage E2E Tests', () => {
     const title = await page.title();
     expect(title).toBeTruthy();
 
-    const viewport = await page.locator('meta[name="viewport"]');
-    await expect(viewport).toBeVisible();
+    // <head> elements are never "visible"; assert presence and content.
+    // Exactly one viewport meta: duplicates (manual tag + Next.js viewport
+    // export) are a real bug this test must catch.
+    const viewport = page.locator('meta[name="viewport"]');
+    await expect(viewport).toHaveCount(1);
+    await expect(viewport).toHaveAttribute('content', /width=device-width/);
+
+    const description = page.locator('meta[name="description"]');
+    await expect(description).toHaveCount(1);
+    const descriptionContent = await description.getAttribute('content');
+    expect(descriptionContent?.trim()).toBeTruthy();
+
+    const ogTitle = page.locator('meta[property="og:title"]');
+    await expect(ogTitle).toHaveCount(1);
   });
 
   test('external links open in new tab', async ({ page }) => {

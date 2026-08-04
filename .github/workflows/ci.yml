@@ -64,7 +64,7 @@ jobs:
         run: npm run build
 
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: build-artifacts
           path: .next
@@ -96,132 +96,19 @@ jobs:
         run: ANALYZE=true npm run build
 
       - name: Upload analysis report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: bundle-analysis
           path: .next/static/chunks
           retention-days: 7
 
   # ============================================================================
-  # DEPLOY TO VERCEL (MAIN BRANCH ONLY)
+  # NOTA: El deploy a producción lo hace la integración Git de Vercel
+  # (el dominio arturobarrios.com lo sirve el proyecto arturobarrios-static).
+  # Se eliminaron los jobs deploy/preview/notify: usaban vercel/action@v6
+  # (acción inexistente) y `secrets` en un `if` (sintaxis inválida que
+  # rompía el parseo del workflow).
   # ============================================================================
-  deploy:
-    name: Deploy to Vercel
-    runs-on: ubuntu-latest
-    needs: [lint, build]
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-
-    environment:
-      name: production
-      url: https://arturobarrios.com
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Deploy to Vercel
-        uses: vercel/action@v6
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          production: true
-          scope: ${{ secrets.VERCEL_ORG_ID }}
-
-      - name: Post deployment message
-        if: success()
-        run: |
-          echo "✅ Deployment successful!"
-          echo "🎉 Live at: https://arturobarrios.com"
-
-  # ============================================================================
-  # PREVIEW DEPLOYMENT (PULL REQUESTS & DEVELOP)
-  # ============================================================================
-  preview:
-    name: Deploy Preview to Vercel
-    runs-on: ubuntu-latest
-    needs: [lint, build]
-    if: github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref == 'refs/heads/develop')
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Deploy to Vercel Preview
-        uses: vercel/action@v6
-        id: vercel-deployment
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          production: false
-          scope: ${{ secrets.VERCEL_ORG_ID }}
-
-      - name: Comment PR with preview URL
-        if: github.event_name == 'pull_request'
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const deployment_url = "${{ steps.vercel-deployment.outputs.preview-url }}";
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: `🚀 **Preview Deployment Ready**\n\n[Visit Preview](${deployment_url})\n\nThis preview will be updated as new commits are pushed.`
-            });
-
-  # ============================================================================
-  # NOTIFY SLACK (OPTIONAL - REQUIRES SLACK WEBHOOK)
-  # ============================================================================
-  notify:
-    name: Notify Slack
-    runs-on: ubuntu-latest
-    needs: [deploy]
-    if: always() && github.event_name == 'push' && github.ref == 'refs/heads/main'
-
-    steps:
-      - name: Determine status
-        id: status
-        run: |
-          if [ "${{ needs.deploy.result }}" = "success" ]; then
-            echo "emoji=✅" >> $GITHUB_OUTPUT
-            echo "message=Deployment to production successful!" >> $GITHUB_OUTPUT
-          else
-            echo "emoji=❌" >> $GITHUB_OUTPUT
-            echo "message=Deployment to production failed!" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Send Slack notification
-        if: secrets.SLACK_WEBHOOK_URL != ''
-        uses: slackapi/slack-github-action@v1.24.0
-        with:
-          webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
-          payload: |
-            {
-              "text": "${{ steps.status.outputs.emoji }} ${{ steps.status.outputs.message }}",
-              "blocks": [
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "*Arturo Barrios Website*\n${{ steps.status.outputs.emoji }} ${{ steps.status.outputs.message }}\n\n*Commit:* `${{ github.sha }}`\n*Author:* ${{ github.actor }}\n*Branch:* main"
-                  }
-                },
-                {
-                  "type": "actions",
-                  "elements": [
-                    {
-                      "type": "button",
-                      "text": {
-                        "type": "plain_text",
-                        "text": "View Deployment"
-                      },
-                      "url": "https://vercel.com"
-                    }
-                  ]
-                }
-              ]
-            }
 
   # ============================================================================
   # LIGHTHOUSE CI (OPTIONAL - REQUIRES LIGHTHOUSE CI SERVER)
