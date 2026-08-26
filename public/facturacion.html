@@ -289,6 +289,59 @@
     color: #9aa4af; font-size: 11.5px; font-style: italic;
   }
 
+  /* ---------- Formato sencillo (declaración) ---------- */
+  .doc.sencillo { color: #2a2f36; }
+  .s-title {
+    font-family: Georgia, 'Times New Roman', serif;
+    color: #c65d28; font-size: 42px; font-weight: 700;
+    letter-spacing: .5px; line-height: 1.05;
+  }
+  .s-sub { color: #6b7684; margin-top: 4px; font-size: 13px; }
+  .s-rule { border-bottom: 3px solid #c65d28; margin: 16px 0 0; }
+  .s-label {
+    font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase;
+    color: #8a94a0; font-weight: 700; margin: 10px 0 2px;
+  }
+  .s-label:first-child { margin-top: 0; }
+  .s-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 22px; }
+  .s-parties {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 24px;
+    border: 1px solid #e3e0d8; border-radius: 3px; overflow: hidden;
+    flex-shrink: 0; /* evita el colapso de altura: grid+overflow:hidden dentro
+      de un padre flex-column hace que el alto automático se calcule como 0 */
+  }
+  .s-parties > div { padding: 16px 18px; }
+  .s-parties > div:first-child { background: #f5f2ea; border-right: 1px solid #e3e0d8; }
+  .s-parties .s-name { font-family: Georgia, 'Times New Roman', serif; font-size: 15px; letter-spacing: .3px; }
+  .s-table { width: 100%; border-collapse: collapse; margin-top: 26px; font-size: 13.5px; }
+  .s-table th {
+    background: #1c1c1c; color: #fff; text-align: left;
+    font-size: 11px; letter-spacing: .07em; text-transform: uppercase;
+    padding: 9px 12px;
+  }
+  .s-table th:last-child { text-align: right; }
+  .s-table td { padding: 12px; border-bottom: 1px solid #e6e6e2; vertical-align: top; }
+  .s-table td:last-child { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .s-table td p { margin: 0 0 8px; }
+  .s-table td p:last-child { margin-bottom: 0; }
+  .s-table td p.enfasis { font-weight: 700; }
+  .s-table tr.s-total td {
+    background: #f4f4f0; border-bottom: none; font-weight: 700; font-size: 15px;
+  }
+  .s-total td:first-child { text-align: right; }
+  .s-total td:last-child { color: #c65d28; }
+  .s-h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 17px; letter-spacing: .4px; margin: 26px 0 8px; color: #1b1f24;
+  }
+  .s-pago div { margin: 2px 0; }
+  .s-decl { font-style: italic; color: #555f6a; font-size: 13px; }
+  .s-firma { margin-top: 26px; }
+  .s-firma img { max-height: 64px; margin-bottom: -8px; display: block; }
+  .s-firma .linea { border-top: 1.5px solid #333; width: 300px; margin-top: 4px; }
+  .s-firma .cap { color: #8a94a0; font-size: 11.5px; margin-top: 3px; }
+  .s-firma .quien { font-size: 12.5px; margin-top: 2px; letter-spacing: .3px; }
+
   /* ---------- Modales ---------- */
   .overlay {
     position: fixed; inset: 0; z-index: 60;
@@ -382,6 +435,16 @@
           <div class="field"><label>Proyecto / concepto general</label><input data-path="proyecto.nombre" placeholder="Ecosistema Digital Andy — Fase 2"></div>
           <div class="field"><label>Etiqueta del total</label><input data-path="proyecto.totalLabel" placeholder="Total Fase 2"></div>
         </div>
+        <div class="row2">
+          <div class="field"><label>Formato del documento</label>
+            <select data-path="formato">
+              <option value="clasico">Clásico AB (plan de pagos)</option>
+              <option value="sencillo">Sencillo · declaración</option>
+            </select>
+          </div>
+          <div class="field"><label>Subtítulo (formato sencillo)</label><input data-path="sencillo.subtitulo" placeholder="Servicios profesionales independientes"></div>
+        </div>
+        <p class="note">El formato sencillo suma los artículos directo (admite montos negativos, p. ej. anticipos −200) e ignora plan de pagos y comisión.</p>
         <div class="field"><label>Notas al pie (opcional)</label><textarea data-path="notas" rows="2" placeholder="Condiciones, aclaraciones…"></textarea></div>
       </div>
     </details>
@@ -419,6 +482,19 @@
           <div class="field"><label>Email</label><input data-path="cliente.email"></div>
           <div class="field"><label>Ubicación</label><input data-path="cliente.ubicacion" placeholder="Tucumán, Argentina"></div>
         </div>
+        <div class="field"><label>Dirección (formato sencillo)</label><input data-path="cliente.direccion" placeholder="3925 NE 157th Pl., Washington, 98155, USA"></div>
+      </div>
+    </details>
+
+    <details class="sec">
+      <summary>Formato sencillo <span class="hint">declaración y firma</span></summary>
+      <div class="sec-body">
+        <div class="field"><label>Nombre legal del emisor</label><input data-path="emisor.nombreLegal" placeholder="RAFAEL ARTURO BARRIOS ISLAS"></div>
+        <div class="field"><label>Titular de la cuenta</label><input data-path="metodo.titular"></div>
+        <div class="field"><label>Declaración</label><textarea data-path="sencillo.declaracion" rows="4"></textarea></div>
+        <label class="check"><input type="checkbox" data-path="sencillo.mostrarFirma"> Incluir firma</label>
+        <div class="field"><label>Imagen de firma (PNG)</label><input type="file" id="firmaFile" accept="image/*"></div>
+        <p class="note">La firma se guarda en este navegador y sale sobre la línea con el nombre legal y la fecha de emisión. En los entregables, una línea envuelta en **dobles asteriscos** sale en negritas.</p>
       </div>
     </details>
 
@@ -534,6 +610,7 @@
   var LS_KEY = 'facturador_v1';
   var LS_LOGO = 'facturador_logo_v1';
   var LS_EMISOR = 'facturador_emisor_v1';
+  var LS_FIRMA = 'facturador_firma_v1';
 
   /* ---------------- Utilidades ---------------- */
   function esc(s) {
@@ -591,7 +668,8 @@
       web: 'arturobarrios.com',
       email: 'arturo.barrios@arturobarrios.com',
       emailVentas: 'ventas@arturobarrios.com',
-      tel: '+52 55 5502 7042'
+      tel: '+52 55 5502 7042',
+      nombreLegal: ''
     };
   }
 
@@ -604,7 +682,7 @@
       enviado: '',
       proyecto: { nombre: '', totalLabel: 'Total del proyecto' },
       emisor: defaultEmisor(),
-      cliente: { nombre: '', email: '', ubicacion: '' },
+      cliente: { nombre: '', email: '', ubicacion: '', direccion: '' },
       items: [{ titulo: '', sub: '', bullets: [], monto: 0 }],
       total: 0,
       planModo: 'auto',
@@ -615,6 +693,12 @@
       ],
       comision: { activa: true, nombre: 'Comisión Stripe 4%', pct: 4 },
       metodo: { tipo: 'stripe', etiqueta: 'Transferencia Stripe', link: '', banco: '', titular: '', cuenta: '', concepto: '' },
+      formato: 'clasico',
+      sencillo: {
+        subtitulo: 'Servicios profesionales independientes',
+        declaracion: DECLARACION_DEFAULT,
+        mostrarFirma: true
+      },
       notas: ''
     };
   }
@@ -647,8 +731,17 @@
     return inv;
   }
 
+  var DECLARACION_DEFAULT = 'El emisor declara que no es ciudadano ni residente fiscal de los Estados Unidos de América, y que los servicios descritos en esta factura fueron prestados en su totalidad fuera del territorio de los Estados Unidos.';
+
   var db = { invoices: [], currentId: null };
   var inv = null;
+
+  function migrate(x) {
+    if (!x.formato) x.formato = 'clasico';
+    if (!x.sencillo) x.sencillo = { subtitulo: 'Servicios profesionales independientes', declaracion: DECLARACION_DEFAULT, mostrarFirma: true };
+    if (x.cliente && x.cliente.direccion == null) x.cliente.direccion = '';
+    if (x.emisor && x.emisor.nombreLegal == null) x.emisor.nombreLegal = '';
+  }
 
   function loadDb() {
     try {
@@ -660,6 +753,7 @@
       db.invoices = [s];
       db.currentId = s.id;
     }
+    db.invoices.forEach(migrate);
     inv = db.invoices.filter(function (x) { return x.id === db.currentId; })[0] || db.invoices[0];
     db.currentId = inv.id;
   }
@@ -680,7 +774,14 @@
     if (a) return a;
     return inv.pagos.filter(function (p) { return p.estado === 'pendiente'; })[0] || inv.pagos[0] || null;
   }
+  function itemsSum() {
+    return inv.items.reduce(function (s, it) { return s + (+it.monto || 0); }, 0);
+  }
   function calc() {
+    if (inv.formato === 'sencillo') {
+      var t = itemsSum();
+      return { act: null, idx: -1, montoActual: t, comision: 0, totalPagar: t, saldoTras: 0 };
+    }
     var act = pagoActual();
     var montoActual = act ? (+act.monto || 0) : 0;
     var comision = (inv.comision.activa && act) ? Math.round(montoActual * (+inv.comision.pct || 0)) / 100 : 0;
@@ -706,7 +807,100 @@
     return '<div class="logo-fallback">AB<small>ARTURO BARRIOS · PM AI CONSULTING</small></div>';
   }
 
+  function moneyS(n, cur) {
+    var v = isFinite(n) ? n : 0;
+    var abs = Math.abs(v).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    return (v < 0 ? '-$' : '$') + abs + (cur ? ' ' + cur : '');
+  }
+  var MES3 = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
+  function fechaFirma(iso) {
+    if (!iso) return '';
+    var p = iso.split('-');
+    if (p.length !== 3) return iso;
+    return p[2] + '-' + MES3[parseInt(p[1], 10) - 1] + '-' + p[0];
+  }
+
+  function renderDocSencillo(docEl) {
+    var cur = inv.moneda;
+    var s = inv.sencillo || {};
+    var total = itemsSum();
+    var nombreEmisor = inv.emisor.nombreLegal || inv.emisor.nombre || '';
+    var h = '';
+    h += '<div class="s-title">FACTURA</div>';
+    if (s.subtitulo) h += '<div class="s-sub">' + esc(s.subtitulo) + '</div>';
+    h += '<div class="s-rule"></div>';
+    h += '<div class="s-meta"><div><div class="s-label">Número de factura</div>' + esc(inv.folio || '—') + '</div>'
+      + '<div><div class="s-label">Fecha de emisión</div>' + esc(fechaLarga(inv.emitido) || '—') + '</div></div>';
+
+    h += '<div class="s-parties"><div>';
+    h += '<div class="s-label">Emitido por</div><div class="s-name">' + esc(nombreEmisor.toUpperCase()) + '</div>';
+    if (inv.emisor.dir1 || inv.emisor.dir2) {
+      h += '<div class="s-label">Dirección</div>';
+      if (inv.emisor.dir1) h += esc(inv.emisor.dir1) + '<br>';
+      if (inv.emisor.dir2) h += esc(inv.emisor.dir2);
+    }
+    if (inv.emisor.rfc) h += '<div class="s-label">Identificación fiscal (RFC / NIF)</div>' + esc(inv.emisor.rfc);
+    h += '<div class="s-label">Correo electrónico</div>';
+    if (inv.emisor.emailVentas) h += esc(inv.emisor.emailVentas) + '<br>';
+    if (inv.emisor.email) h += esc(inv.emisor.email);
+    h += '</div><div>';
+    h += '<div class="s-label">Facturado a</div><div class="s-name">' + esc(inv.cliente.nombre || '—') + '</div>';
+    var dirCliente = inv.cliente.direccion || inv.cliente.ubicacion;
+    if (dirCliente) h += '<div class="s-label">Dirección</div>' + esc(dirCliente);
+    if (inv.cliente.email) h += '<div class="s-label">Correo electrónico</div>' + esc(inv.cliente.email);
+    h += '</div></div>';
+
+    h += '<table class="s-table"><tr><th>Descripción del servicio</th><th>Monto (' + esc(cur) + ')</th></tr>';
+    inv.items.forEach(function (it) {
+      h += '<tr><td>';
+      if (it.titulo) h += '<p>' + esc(it.titulo) + '</p>';
+      if (it.sub) h += '<p>' + esc(it.sub) + '</p>';
+      (it.bullets || []).forEach(function (b) {
+        var bold = /^\*\*(.+)\*\*$/.exec(b);
+        h += bold ? '<p class="enfasis">' + esc(bold[1]) + '</p>' : '<p>' + esc(b) + '</p>';
+      });
+      h += '</td><td>' + moneyS(+it.monto || 0) + '</td></tr>';
+    });
+    h += '<tr class="s-total"><td>TOTAL A PAGAR</td><td>' + moneyS(total, cur) + '</td></tr></table>';
+
+    var m = inv.metodo;
+    var metodoNombre = m.etiqueta || (m.tipo === 'stripe' ? 'Stripe' : m.tipo === 'paypal' ? 'PayPal' : 'Transferencia bancaria');
+    h += '<div class="s-h2">DATOS PARA EL PAGO</div><div class="s-pago">';
+    h += '<div>Método de pago: ' + esc(metodoNombre) + '</div>';
+    if (m.tipo !== 'banco' && m.link) h += '<div>Link de pago: <a href="' + esc(m.link) + '">' + esc(m.link) + '</a></div>';
+    if (m.tipo === 'banco') {
+      if (m.banco) h += '<div>Banco: ' + esc(m.banco) + '</div>';
+      if (m.cuenta) h += '<div>Cuenta / CLABE: ' + esc(m.cuenta) + '</div>';
+    }
+    if (m.titular) h += '<div>Titular de la cuenta: ' + esc(m.titular) + '</div>';
+    if (m.concepto) h += '<div>Concepto: ' + esc(m.concepto) + '</div>';
+    h += '</div>';
+
+    if (s.declaracion) h += '<div class="s-h2">DECLARACIÓN</div><div class="s-decl">' + esc(s.declaracion) + '</div>';
+
+    if (s.mostrarFirma) {
+      var firma = '';
+      try { firma = localStorage.getItem(LS_FIRMA) || ''; } catch (e) {}
+      h += '<div class="s-firma">';
+      if (firma) h += '<img src="' + firma + '" alt="Firma">';
+      h += '<div class="linea"></div><div class="cap">Firma del emisor</div>';
+      h += '<div class="quien">' + esc(nombreEmisor.toUpperCase()) + (inv.emitido ? ' — ' + fechaFirma(inv.emitido) : '') + '</div></div>';
+    }
+
+    if (inv.notas) h += '<div class="d-notas">' + esc(inv.notas) + '</div>';
+    h += '<div class="d-foot">Gracias por confiar en nuestro trabajo · ' + esc(inv.emisor.web || '') + '</div>';
+
+    docEl.innerHTML = h;
+    document.getElementById('hintDoc').textContent = inv.folio || 'sin folio';
+    document.getElementById('hintItems').textContent = inv.items.length + (inv.items.length === 1 ? ' artículo' : ' artículos');
+    document.getElementById('hintPagos').textContent = 'formato sencillo · total ' + money(total, cur);
+    document.title = 'Factura ' + (inv.folio || 's/f') + ' · ' + (inv.cliente.nombre || 'Facturador');
+  }
+
   function renderDoc() {
+    var docEl = document.getElementById('doc');
+    docEl.className = 'doc' + (inv.formato === 'sencillo' ? ' sencillo' : '');
+    if (inv.formato === 'sencillo') { renderDocSencillo(docEl); return; }
     var c = calc();
     var cur = inv.moneda;
     var h = '';
@@ -840,7 +1034,7 @@
         + '<div class="field"><label>Título</label><input data-ipath="titulo" data-i="' + i + '" value="' + esc(it.titulo) + '"></div>'
         + '<div class="row2">'
         + '<div class="field"><label>Subtítulo</label><input data-ipath="sub" data-i="' + i + '" value="' + esc(it.sub) + '"></div>'
-        + '<div class="field"><label>Monto</label><input type="number" step="0.01" min="0" data-ipath="monto" data-i="' + i + '" value="' + (+it.monto || 0) + '"></div>'
+        + '<div class="field"><label>Monto</label><input type="number" step="0.01" data-ipath="monto" data-i="' + i + '" value="' + (+it.monto || 0) + '"></div>'
         + '</div>'
         + '<div class="field"><label>Entregables (una viñeta por línea)</label>'
         + '<textarea rows="5" data-ipath="bullets" data-i="' + i + '">' + esc((it.bullets || []).join('\n')) + '</textarea></div>'
@@ -996,6 +1190,18 @@
     r.readAsDataURL(f);
   });
 
+  document.getElementById('firmaFile').addEventListener('change', function () {
+    var f = this.files && this.files[0];
+    if (!f) return;
+    if (f.size > 300 * 1024) { toast('Firma demasiado grande (máx. 300 KB)'); this.value = ''; return; }
+    var r = new FileReader();
+    r.onload = function () {
+      try { localStorage.setItem(LS_FIRMA, r.result); } catch (e) { toast('No se pudo guardar la firma'); return; }
+      renderDoc(); toast('Firma actualizada');
+    };
+    r.readAsDataURL(f);
+  });
+
   /* ---------------- Facturas: nueva / duplicar / eliminar / selector ---------------- */
   function switchTo(id) {
     var x = db.invoices.filter(function (v) { return v.id === id; })[0];
@@ -1055,6 +1261,7 @@
         var x = JSON.parse(r.result);
         if (!x || !x.pagos || !x.items) throw new Error('formato');
         x.id = uid();
+        migrate(x);
         db.invoices.unshift(x);
         switchTo(x.id);
         toast('Factura importada');
@@ -1187,14 +1394,20 @@
     var lines = [];
     lines.push('Hola ' + nombreCorto + ',');
     lines.push('');
-    lines.push('Te comparto la factura correspondiente al ' + etiqueta + ' del proyecto “' + (inv.proyecto.nombre || '') + '”.');
-    lines.push('');
-    lines.push('Resumen:');
-    lines.push('• Nº de formato de pago: ' + (inv.folio || '—'));
-    if (c.act) lines.push('• Pago ' + (c.idx + 1) + ' de ' + inv.pagos.length + ' (' + (+c.act.pct || 0) + '% del total): ' + money(c.montoActual, cur));
-    if (inv.comision.activa && c.comision > 0) lines.push('• ' + (inv.comision.nombre || 'Comisión') + ': ' + money(c.comision, cur));
-    lines.push('• Total a pagar: ' + money(c.totalPagar, cur));
-    lines.push('• Saldo pendiente tras este pago: ' + money(c.saldoTras, cur));
+    if (inv.formato === 'sencillo') {
+      lines.push('Te comparto la factura ' + (inv.folio || '') + (inv.proyecto.nombre ? ' del proyecto “' + inv.proyecto.nombre + '”' : '') + '.');
+      lines.push('');
+      lines.push('• Total a pagar: ' + money(c.totalPagar, cur));
+    } else {
+      lines.push('Te comparto la factura correspondiente al ' + etiqueta + ' del proyecto “' + (inv.proyecto.nombre || '') + '”.');
+      lines.push('');
+      lines.push('Resumen:');
+      lines.push('• Nº de formato de pago: ' + (inv.folio || '—'));
+      if (c.act) lines.push('• Pago ' + (c.idx + 1) + ' de ' + inv.pagos.length + ' (' + (+c.act.pct || 0) + '% del total): ' + money(c.montoActual, cur));
+      if (inv.comision.activa && c.comision > 0) lines.push('• ' + (inv.comision.nombre || 'Comisión') + ': ' + money(c.comision, cur));
+      lines.push('• Total a pagar: ' + money(c.totalPagar, cur));
+      lines.push('• Saldo pendiente tras este pago: ' + money(c.saldoTras, cur));
+    }
     lines.push('');
     var m = inv.metodo;
     if (m.tipo === 'banco') {
